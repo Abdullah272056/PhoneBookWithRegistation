@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView android:layout_margin="6dp"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="20dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:background="#46484E"
+        android:background="#676C7A"
         android:padding="10dp"
         android:orientation="horizontal"
         android:weightSum="4"
         android:layout_width="match_parent"
         android:layout_height="140dp">
-
-
-
 
         <LinearLayout
             android:gravity="center"
@@ -48,17 +49,18 @@
                 android:layout_height="0dp"/>
 
             <TextView
-                android:textColor="#ffffff"
                 android:id="@+id/locationTextViewId"
-                android:drawableLeft="@drawable/location"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1.5"
+                android:drawableLeft="@drawable/location"
                 android:paddingLeft="10dp"
-                android:text="Name"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:text="Location"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#ffffff" />
 
             <TextView
+
                 android:id="@+id/phoneNumberTextViewId"
                 android:textColor="#EC0505"
                 android:background="@drawable/phone_number_textview_background"
@@ -116,4 +118,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

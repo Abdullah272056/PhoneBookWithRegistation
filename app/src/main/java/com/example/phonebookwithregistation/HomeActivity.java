@@ -3,6 +3,8 @@ package com.example.phonebookwithregistation;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +30,8 @@ public class HomeActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case R.id.contactItemId:
-                Toast.makeText(getApplicationContext(),"contactItemId Selected",Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(HomeActivity.this, ContactActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.LogoutItemId:
                 Toast.makeText(getApplicationContext(),"LogoutItemId Selected",Toast.LENGTH_LONG).show();
