@@ -9,6 +9,7 @@
     tools:context=".SignUpActivity">
 
     <EditText
+        android:id="@+id/signUpNameEditTextId"
         android:drawableEnd="@drawable/ic_person"
         android:textStyle="italic"
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
         android:textColorHint="#FFFFFF" />
 
     <EditText
-
+        android:id="@+id/signUpEmailEditTextId"
         android:textStyle="italic"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -44,6 +45,7 @@
         android:textColorHint="#FFFFFF" />
 
     <EditText
+        android:id="@+id/signUpPasswordEditTextId"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
@@ -60,6 +62,7 @@
         android:textColorHint="#FFFFFF"
         android:textStyle="italic" />
     <EditText
+        android:id="@+id/signUpConfirmPasswordEditTextId"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
@@ -77,7 +80,7 @@
         android:textStyle="italic" />
 
     <EditText
-
+        android:id="@+id/signUpPhoneEditTextId"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
@@ -95,7 +98,8 @@
         android:textStyle="italic" />
 
     <Button
-        android:text="LOG IN"
+        android:id="@+id/signUpButtonId"
+        android:text="SIGN UP"
         android:textColor="#FFFFFF"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
@@ -106,12 +110,13 @@
         android:layout_height="50dp"/>
 
     <TextView
+        android:id="@+id/SignInTextViewId"
         android:textStyle="normal"
         android:layout_marginTop="40dp"
         android:layout_gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#ffffff"
-        android:text="Already have an account? Sign in"
+        android:text="Already have an account? Sign in !"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
