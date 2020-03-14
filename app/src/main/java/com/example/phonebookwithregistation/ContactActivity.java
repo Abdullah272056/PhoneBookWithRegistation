@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +43,8 @@ public class ContactActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         loadData();
+
+
 
         addButton   =   findViewById(R.id.addButtonId);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -121,5 +125,6 @@ public class ContactActivity extends AppCompatActivity {
 
         alertDialog.show();
     }
+
 
 }

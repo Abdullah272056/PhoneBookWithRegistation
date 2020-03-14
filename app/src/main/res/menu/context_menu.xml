@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Update"
+        android:id="@+id/updateItemId"
+        />
+
+    <item android:title="Delete"
+        android:id="@+id/deleteItemId"
+        />
+
+    <item android:id="@+id/shareItemId"
+        android:title="share"/>
+
+    <item android:title="No change"
+        android:id="@+id/noChangeItemId"
+        />
+
+
+</menu>
