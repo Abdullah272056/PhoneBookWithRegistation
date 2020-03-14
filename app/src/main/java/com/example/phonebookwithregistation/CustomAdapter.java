@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,12 +21,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> implements Filterable {
     Context context;
     private List<Notes> allNotes;
+    List<Notes> copyAllNotes;
     private DataBaseHelper databaseHelper;
 
     public CustomAdapter(Context context, List<Notes>allNotes) {
@@ -32,6 +36,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         this.allNotes = allNotes;
       databaseHelper=new DataBaseHelper(context);
      this.context=context;
+
+        copyAllNotes = new ArrayList<>(allNotes);//for searchView//dataList's copy
     }
 
     @NonNull
@@ -78,25 +84,24 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             }
         });
 
+//////////////////
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-
-
+//                androidx.appcompat.app.AlertDialog.Builder builder  = new androidx.appcompat.app.AlertDialog.Builder(context);
+//                View view1 = LayoutInflater.from(context).inflate(R.layout.recycler_item_operation,null);
+//                builder.setView(view1);
+//                builder.show();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Select Action");
-
-
                 builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         customDialog(position);
-
                     }
                 });
-
 
                 builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
@@ -113,6 +118,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 return true;
             }
         });
+        ///////////////
 
 
 
@@ -124,8 +130,40 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return allNotes.size();
     }
 
+    @Override
+    public Filter getFilter() {
 
+        return filterData;
+    }
 
+    Filter filterData =new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Notes> filterList=new ArrayList<>();//for filter data keeping
+            if (charSequence==null||charSequence.length()==0){
+                filterList.addAll(copyAllNotes);
+            }
+            else{
+                String value=charSequence.toString().toLowerCase().trim();
+                for (Notes notes:copyAllNotes){
+                    if (notes.getName().toLowerCase().trim().contains(value)){
+                        filterList.add(notes);
+                    }
+
+                }
+            }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filterList;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            allNotes.clear();
+            allNotes.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    };
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

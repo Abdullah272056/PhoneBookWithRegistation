@@ -2,6 +2,7 @@ package com.example.phonebookwithregistation;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,7 +10,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +30,7 @@ public class ContactActivity extends AppCompatActivity {
     FloatingActionButton addButton;
     Context context;
     RecyclerView recyclerView;
-    CustomAdapter adapter;
+    CustomAdapter customAdapter;
     List<Notes> dataList;
 
     @Override
@@ -60,9 +63,9 @@ public class ContactActivity extends AppCompatActivity {
         dataList  = new ArrayList<>();
         dataList = dataBaseHelper.getAllNotes();
         if (dataList.size() > 0){
-            adapter = new CustomAdapter(context,dataList);
-            recyclerView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+            customAdapter = new CustomAdapter(context,dataList);
+            recyclerView.setAdapter(customAdapter);
+            customAdapter.notifyDataSetChanged();
         }else {
             Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show();
         }
@@ -124,6 +127,31 @@ public class ContactActivity extends AppCompatActivity {
         });
 
         alertDialog.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.search_menu,menu);
+
+        MenuItem menuItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                customAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+
+
+
+        return true;
     }
 
 
