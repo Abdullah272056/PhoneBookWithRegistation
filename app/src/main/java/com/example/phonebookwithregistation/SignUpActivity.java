@@ -21,6 +21,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        this.setTitle("Sign Up Page");
+
         //finding start
         singUpNameEditText=findViewById(R.id.signUpNameEditTextId);
         singUpEmailEditText=findViewById(R.id.signUpEmailEditTextId);

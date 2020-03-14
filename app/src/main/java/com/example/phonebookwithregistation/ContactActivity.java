@@ -37,8 +37,10 @@ public class ContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
+        this.setTitle("Contact Page");
 
         context=ContactActivity.this;
+
 
         recyclerView=findViewById(R.id.recyclerViewId);
         dataBaseHelper=new DataBaseHelper(ContactActivity.this);
@@ -148,8 +150,6 @@ public class ContactActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
 
         return true;
     }

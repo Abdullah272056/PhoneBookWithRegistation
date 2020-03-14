@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,13 +24,35 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        this.setTitle("Home page");
 
         sharePref=new SharePref();
         context =HomeActivity.this;
 
+    }
 
 
-        
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(HomeActivity.this);
+        builder.setTitle("Do you want exit  app ?");
+        builder.setMessage("Please press any button for action.");
+
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        builder.show();
     }
 
     @Override
@@ -47,7 +70,10 @@ public class HomeActivity extends AppCompatActivity {
                 Customialog();
                 return true;
             case R.id.LogoutItemId:
-                Toast.makeText(getApplicationContext(),"LogoutItemId Selected",Toast.LENGTH_LONG).show();
+               sharePref.rememberData(HomeActivity.this,"","");
+                Intent intent =new Intent(HomeActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
                 return true;
             default:
 

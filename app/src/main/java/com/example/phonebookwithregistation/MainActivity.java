@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setTitle("Login page");
 
 
         //finding start
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else {
-            Toast.makeText(this, "empty", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "empty", Toast.LENGTH_SHORT).show();
         }
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (email.equals(emailValue) && password.equals(passwordValue)){
-                        sharePref.rememberData(MainActivity.this,email,password);
                         Intent intent =new Intent(MainActivity.this,HomeActivity.class);
                         startActivity(intent);
                         finish();
