@@ -26,6 +26,10 @@ public class HomeActivity extends AppCompatActivity {
 
         sharePref=new SharePref();
         context =HomeActivity.this;
+
+
+
+        
     }
 
     @Override

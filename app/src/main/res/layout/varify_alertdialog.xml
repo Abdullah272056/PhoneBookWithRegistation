@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:background="@drawable/loginpage_background"
+android:background="@drawable/loginpage_background"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
+        android:textStyle="bold"
+        android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:background="#485B6268"
         android:gravity="center"
@@ -19,13 +21,17 @@
         android:textSize="20sp"/>
 
     <EditText
+        android:textStyle="normal"
+        android:textColorHint="#ffffff"
+        android:textColor="#FFFFFF"
         android:inputType="textPassword"
-        android:padding="8dp"
-        android:textSize="25sp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:textSize="20sp"
         android:background="@drawable/edittext_background"
         android:layout_margin="20dp"
         android:maxLines="1"
-        android:paddingLeft="10dp"
+        android:paddingLeft="20dp"
         android:hint="Enter your password"
         android:id="@+id/verifyPasswordEditTextId"
         android:layout_width="match_parent"
@@ -39,7 +45,8 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
             android:background="@drawable/button_background"
             android:id="@+id/cancelButtonId"
             android:layout_width="0dp"
@@ -49,14 +56,15 @@
             android:text="cancel" />
 
         <Button
-            android:textSize="25sp"
-            android:background="@drawable/button_background"
+            android:textColor="#ffffff"
             android:id="@+id/okButtonId"
-            android:text="Ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:background="@drawable/button_background"
+            android:text="Ok"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

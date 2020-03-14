@@ -27,9 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
-
         //finding start
         button=findViewById(R.id.loginButtonId);
         emailEditText=findViewById(R.id.loginEmailEditText);
@@ -41,16 +38,18 @@ public class MainActivity extends AppCompatActivity {
 
 
         sharePref=new SharePref();
+
         String emailValue= sharePref.loadRememberEmail(MainActivity.this);
         String passwordValue= sharePref.loadRememberPassword(MainActivity.this);
 
 
-        if (!emailValue.isEmpty()||!passwordValue.isEmpty()){
+        if (!emailValue.isEmpty() && !passwordValue.isEmpty()){
             emailEditText.setText(emailValue);
             passwordEditText.setText(passwordValue);
             if (emailEditText.getText().toString().equals(emailValue) && passwordEditText.getText().toString().equals(passwordValue)){
                 Intent intent =new Intent(MainActivity.this,HomeActivity.class);
                 startActivity(intent);
+                finish();
             }
         }
         else {
@@ -78,8 +77,10 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (email.equals(emailValue) && password.equals(passwordValue)){
+                        sharePref.rememberData(MainActivity.this,email,password);
                         Intent intent =new Intent(MainActivity.this,HomeActivity.class);
                         startActivity(intent);
+                        finish();
 
                     }
                     else {
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
 
     }
 

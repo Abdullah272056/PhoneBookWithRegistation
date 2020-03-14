@@ -20,6 +20,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -88,33 +90,77 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-//                androidx.appcompat.app.AlertDialog.Builder builder  = new androidx.appcompat.app.AlertDialog.Builder(context);
-//                View view1 = LayoutInflater.from(context).inflate(R.layout.recycler_item_operation,null);
-//                builder.setView(view1);
-//                builder.show();
+            public boolean onLongClick(View v) {
+                androidx.appcompat.app.AlertDialog.Builder builder  = new androidx.appcompat.app.AlertDialog.Builder(context);
+                View view = LayoutInflater.from(context).inflate(R.layout.recycler_item_operation,null);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Select Action");
-                builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                builder.setView(view);
+
+                final androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+
+
+                TextView updateTextView=view.findViewById(R.id.updateTextViewId);
+                TextView deleteTextView=view.findViewById(R.id.deleteTextViewId);
+                TextView cancelTextView=view.findViewById(R.id.cancelTextViewId);
+
+                updateTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onClick(View v) {
                         customDialog(position);
+                        alertDialog.dismiss();
+
                     }
                 });
 
-                builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                deleteTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onClick(View v) {
                         int status = databaseHelper.deleteData(allNotes.get(position).getId());
                         if (status == 1){
                             allNotes.remove(allNotes.get(position));
+                            alertDialog.dismiss();
                             notifyDataSetChanged();
                         }else {
                         }
                     }
                 });
-                builder.show();
+
+                cancelTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+
+                    }
+                });
+
+
+
+
+
+
+//                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//                builder.setTitle("Select Action");
+//                builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        customDialog(position);
+//                    }
+//                });
+//
+//                builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        int status = databaseHelper.deleteData(allNotes.get(position).getId());
+//                        if (status == 1){
+//                            allNotes.remove(allNotes.get(position));
+//                            notifyDataSetChanged();
+//                        }else {
+//                        }
+//                    }
+//                });
+//                builder.show();
+
+                alertDialog.show();
                 return true;
             }
         });
